@@ -60,8 +60,10 @@ fi
 
 echo -e '\nScanning URL '"$url"' with dictionary located in '"$dict"'...'
 
+### For every line in dictionary file
 for crawl in $(cat "$dict")
 	do
+		### Get just the HTTP EXIT CODE with the desided timeout, without showing anything to output
 		EXIT_CODE=$(curl -sL -w '%{http_code}' --connect-timeout $tout -o /dev/null $url/$crawl)
 		if [[ $EXIT_CODE = 20* ]] || [[ $EXIT_CODE = 30* ]]
 		then
