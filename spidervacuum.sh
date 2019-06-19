@@ -35,7 +35,7 @@ if [ -z "$url" ]															### If variable is empty
 then
 		echo 'Missing URL to scan!'
 		exit 1
-elif [[ "$(host $url > /dev/null 2>&1; echo $?)" != 0 ]]										### If exit code of host command to URL is not 0, means that URL is unreachable
+elif ! host "$url" > /dev/null 2>&1													### If exit code of host command to URL is not 0, means that URL is unreachable
 then
 		echo 'URL non reachable, aborting.'
 		exit 1
@@ -59,7 +59,7 @@ fi
 echo -n 'Stealth: '
 read stealth
 
-	if [ -z "$stealth" ]														### If stealth delay is not specified
+if [ -z "$stealth" ]															### If stealth delay is not specified
 then
 		echo -e "\tStealth not specified. Every packet will be sent ASAP."
 		stealth=0
@@ -69,26 +69,25 @@ then
 		exit 1
 fi
 
-		countdown=$(wc -l $dict | awk '{print$1}')										### Initialize total count of pending URL
+countdown=$(wc -l $dict | awk '{print$1}')												### Initialize total count of pending URLs
 count=1																	### Initialize counter for URL countdown
 
 echo -e '\nScanning URL '"$url"' with dictionary located in '"$dict"'. Total URLs pending: '"$countdown"
 
 for crawl in $(cat "$dict")
-		do
-				EXIT_CODE=$(curl -sL -w '%{http_code}' --connect-timeout $tout -o /dev/null $url/$crawl)		### Just a check of the HTTP return code
-				### The following codes are the 200-299 (success), the 300-399 (redirect) and specific 400-499 codes that, even if they are theorically errors, mean that the resource we are looking for does exist in the server
-				if [[ $EXIT_CODE = 20* ]] || [[ $EXIT_CODE = 30* ]] || [[ $EXIT_CODE = 401 ]] || [[ $EXIT_CODE = 403 ]] || [[ $EXIT_CODE = 407 ]] || [[ $EXIT_CODE = 407 ]] || [[ $EXIT_CODE = 423 ]] || [[ $EXIT_CODE = 451 ]]
-				then
-						echo -ne "\033[2K\u2713 $url/$crawl, HTTP $EXIT_CODE; URL $count of $countdown\n"
-				else
-						echo -ne "\033[2K\u2610 $url/$crawl, HTTP $EXIT_CODE; URL $count of $countdown\r"
-				fi
-				sleep $stealth
-				count=$((count+1))
-		done
+	do
+			EXIT_CODE=$(curl -sL -w '%{http_code}' --connect-timeout $tout -o /dev/null $url/$crawl)		### Just a check of the HTTP return code
+			### The following codes are the 200-299 (success), the 300-399 (redirect) and specific 400-499 codes that, even if they are theorically errors, mean that the resource we are looking for does exist in the server
+			if [[ $EXIT_CODE = 20* ]] || [[ $EXIT_CODE = 30* ]] || [[ $EXIT_CODE = 401 ]] || [[ $EXIT_CODE = 403 ]] || [[ $EXIT_CODE = 407 ]] || [[ $EXIT_CODE = 407 ]] || [[ $EXIT_CODE = 423 ]] || [[ $EXIT_CODE = 451 ]]
+			then
+					echo -ne "\033[2K\u2713 $url/$crawl, HTTP $EXIT_CODE; URL $count of $countdown\n"
+			else
+					echo -ne "\033[2K\u2610 $url/$crawl, HTTP $EXIT_CODE; URL $count of $countdown\r"
+			fi
+			sleep $stealth
+			count=$((count+1))
+	done
 echo
 
 
-### For any clarification about HTTP return codes, check here:
-###	 https://thevirusdoublezero.tk/codici-http/
+### For any clarification about HTTP return codes, check here: https://thevirusdoublezero.tk/codici-http/
