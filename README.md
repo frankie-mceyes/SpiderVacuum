@@ -12,7 +12,7 @@ $ ./spidervacuum.sh
 \ `--. _ __  _  __| | ___ _ __| | | | __ _  ___ _   _ _   _ _ __ ___
  `--. \ '_ \| |/ _` |/ _ \ '__| | | |/ _` |/ __| | | | | | | '_ ` _ \
 /\__/ / |_) | | (_| |  __/ |  \ \_/ / (_| | (__| |_| | |_| | | | | | |
-\____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_|
+\____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_|  by Frankie McEyes
       | |
       |_|
 
@@ -29,6 +29,15 @@ $ ./spidervacuum.sh
 * A countdown of pending URLs
 * The spider just checks the HTTP status code of the web page, so there's no check on the **content** of the page
 
+### Accepted HTTP status codes
+* Every 200-299 code (Success)
+* Every 300-399 code (Redirect)
+* 401 (Unauthorized)
+* 403 (Forbidden)
+* 407 (Proxy Authentication required)
+* 423 (Locked)
+* 451 (Unavailable for legal reasons)
+
 For any clarification about HTTP status code, you can check here: https://thevirusdoublezero.tk/codici-http/
 
 ### Example of TOR crawl
@@ -39,7 +48,7 @@ $ ./spidervacuum.sh TOR
 \ `--. _ __  _  __| | ___ _ __| | | | __ _  ___ _   _ _   _ _ __ ___
  `--. \ '_ \| |/ _` |/ _ \ '__| | | |/ _` |/ __| | | | | | | '_ ` _ \
 /\__/ / |_) | | (_| |  __/ |  \ \_/ / (_| | (__| |_| | |_| | | | | | |
-\____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_|
+\____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_| by Frankie McEyes
     | |
     |_|
 Dictionary file path: /home/WebScan/wordlist
@@ -63,7 +72,7 @@ $ ./spidervacuum.sh
 \ `--. _ __  _  __| | ___ _ __| | | | __ _  ___ _   _ _   _ _ __ ___
  `--. \ '_ \| |/ _` |/ _ \ '__| | | |/ _` |/ __| | | | | | | '_ ` _ \
 /\__/ / |_) | | (_| |  __/ |  \ \_/ / (_| | (__| |_| | |_| | | | | | |
-\____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_|
+\____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_| by Frankie McEyes
     | |
     |_|
 Dictionary file path: /home/WebScan/wordlist
