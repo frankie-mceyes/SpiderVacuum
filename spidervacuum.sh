@@ -7,6 +7,8 @@
 # [ ] Use all files in a directory as dictionaries
 # [+] If timeout is wrong, don't exit, make it change
 # [ ] If stealth is wrong, don't exit, make it change
+# [ ] Manage output of results
+# [ ] Add final statistics, both when the scan is finished and when the user stops the crawling (CTRL + C)
 ########################################################
 
 
