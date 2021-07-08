@@ -1,6 +1,5 @@
 A simple web crawler programmed in BASH.
-It took me less than a morning to program this, just to test myself and commit another repo :P
-
+It took me less than a morning to program this, just because i needed this in a short time and test myself.
 This crawler works with the requests made by the CURL command, taking the HTTP response code and checking if a URL is valid or not.
 That's all.
 
@@ -24,7 +23,7 @@ $ ./spidervacuum.sh
 * Can send packets through TOR network
 * A customizable timeout
   * If the inserted timeout is less than 3 seconds and the TOR setting is enabled, there could be an abnormal amount of false negatives, due to the TOR network nature, so a warning message will be shown to confirm the inserted value 
-* A stealth feature, which will wait for the amount of seconds specified between each request, to avoid IDS problems
+* A stealth feature, which will wait for the amount of seconds specified between each request, to avoid IDS/flooding issues
   * If the TOR settings is enabled, there will be no stealth, due to the nature of the TOR network nature
 * A countdown of pending URLs
 * The spider just checks the HTTP status code of the web page, so there's no check on the **content** of the page
@@ -38,7 +37,7 @@ $ ./spidervacuum.sh
 * 423 (Locked)
 * 451 (Unavailable for legal reasons)
 
-For any clarification about HTTP status code, you can check here: https://thevirusdoublezero.tk/codici-http/
+For any clarification about HTTP status code, you can check here: https://thevirusdoublezero.com/codici-http/
 
 ### Example of TOR crawl
 ```
@@ -51,16 +50,16 @@ $ ./spidervacuum.sh TOR
 \____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_| by Frankie McEyes
     | |
     |_|
-Dictionary file path: /home/WebScan/wordlist
-URL: thevirusdoublezero.tk
+Dictionary file path: /home/wordlist.txt
+URL: thevirusdoublezero.com
         Checking if URL is alive... OK
 Timeout: 2
-        Warning! You choose to send the packets over the TOR protocol, but you typed a timeout of 2 seconds, which could cause timeouts too often, due to the nature of the TOR network.
+        Warning! You choose to send the packets over the TOR protocol, but you typed a timeout of 2 seconds, which could cause timeouts too often due to the nature of the TOR network.
         Do you want to maintain this value? (N/y) y
 TOR option enabled, bypassing stealth.
 
 
-Scanning URL thevirusdoublezero.tk with dictionary located in /home/WebScan/wordlist. Total URLs pending: 45563
+Scanning URL thevirusdoublezero.com with dictionary located in /home/wordlist.txt. Total URLs pending: 45563
 Sending request through TOR network.
 ```
 
@@ -75,13 +74,13 @@ $ ./spidervacuum.sh
 \____/| .__/|_|\__,_|\___|_|   \___/ \__,_|\___|\__,_|\__,_|_| |_| |_| by Frankie McEyes
     | |
     |_|
-Dictionary file path: /home/WebScan/wordlist
-URL: thevirusdoublezero.tk
+Dictionary file path: /home/wordlist.txt
+URL: thevirusdoublezero.com
         Checking if URL is alive... OK
 Timeout:
         Timeout not specified. Using the default 3 seconds.
 Stealth:
         Stealth not specified. Every packet will be sent ASAP.
 
-Scanning URL thevirusdoublezero.tk with dictionary located in /home/WebScan/wordlist. Total URLs pending: 45563
+Scanning URL thevirusdoublezero.com with dictionary located in /home/wordlist.txt. Total URLs pending: 45563
 ```
